@@ -1,0 +1,30 @@
+﻿@page
+@model WebApplication666.Pages.Client.AddModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Регистрация";
+}
+
+<form method="post" asp-page="/client/add">
+    <div>
+        <span asp-validation-for="@Model.Input.Name"></span>
+        <label asp-for="@Model.Input.Name"></label>
+        <input asp-for="@Model.Input.Name">
+    </div>
+    <div>
+        <span asp-validation-for="@Model.Input.Password"></span>
+        <label asp-for="@Model.Input.Password"></label>
+        <input asp-for="@Model.Input.Password">
+    </div>
+    <div>
+        <span asp-validation-for="@Model.Input.PasswordAgain"></span>
+        <label asp-for="@Model.Input.PasswordAgain"></label>
+        <input asp-for="@Model.Input.PasswordAgain">
+    </div>
+    <div>
+        <span asp-validation-for="@Model.Input.Country"></span>
+        <label asp-for="@Model.Input.Country"></label>
+        <select asp-items="@Model.SelectCountry" asp-for="@Model.Input.Country"></select>
+    </div>
+    <input type="submit" value="Регистрация" />
+</form>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-page="/client/add">Добавить пользователя</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" asp-page="#">Добавить пользователя</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" asp-page="#">Добавить пользователя</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+</html>
