@@ -20,7 +20,5 @@ namespace Data
         
         [MaxLength(100),Required]
         public string Country { get; set; } = null!;
-
-
     }
 }
