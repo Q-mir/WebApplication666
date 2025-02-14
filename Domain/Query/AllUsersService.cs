@@ -20,7 +20,7 @@ namespace Domain.Query
 
         public List<UserDTO> Execute(All obj)
         {
-            return null;
+            return _repository.GetAll();
         }
     }
 }

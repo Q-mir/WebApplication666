@@ -11,7 +11,7 @@ public class RepositoryDB : Domain.IRepository
         _connection = connection;
     }
 
-    public bool Check(string login) 
+    public bool Check(string login)
                 => _connection.Clients.Any(client => client.Login.ToLower() == login.ToLower());
 
     public void Create(UserDTO user)
@@ -24,7 +24,23 @@ public class RepositoryDB : Domain.IRepository
         };
         _connection.Clients.Add(client);
         _connection.SaveChanges();
-
-
     }
+
+    public List<UserDTO> GetAll()
+        => _connection.Clients.Select(client => Convert(client)).ToList();
+
+    public UserDTO GetById(int id)
+    {
+        var client = _connection.Clients.FirstOrDefault(client => client.Id == id);
+        return client == null ? null : Convert(client);
+    }
+
+    private UserDTO Convert(Client item)
+        => new UserDTO()
+        {
+            Id = item.Id,
+            Login = item.Login,
+            Country = item.Country,
+            Password = item.Password,
+        };
 }
