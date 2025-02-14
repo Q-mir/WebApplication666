@@ -17,10 +17,16 @@ public class ShowModel : PageModel
     }
 
     [BindProperty]
-    public List<UserInDb> AllUser { get; set; }
+    public IEnumerable<UserInDb> AllUser { get; set; }
 
     public void OnGet()
     {
-
+        var list = _getAll.Execute(new All());
+        AllUser = list.Select(row => new UserInDb()
+        {
+            Id = row.Id,
+            Name = row.Login,
+            Country = row.Country,
+        });
     }
 }

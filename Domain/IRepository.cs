@@ -11,5 +11,6 @@ namespace Domain
     {
         void Create(UserDTO user);
         bool Check(string login);
+        List<UserDTO> GetAll();
     }
 }
