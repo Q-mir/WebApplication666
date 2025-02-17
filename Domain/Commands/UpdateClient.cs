@@ -13,7 +13,7 @@ namespace Domain.Commands
         public string Password { get; set; } = null!;
         public bool IsValidation
         {
-            get => Id <= 0 && Country.Length < 3 && Password.Length < 3;
+            get => Id >= 0 || Country.Length >= 3 || Password.Length >= 3;
         }
     }
 }

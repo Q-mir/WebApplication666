@@ -6,11 +6,16 @@
 }
 
 @if(Model.Input != null){
-    <form>
-        <input  asp-for="@Model.Input.Name" />
+    <form asp-page="/client/update" method="post">
+        <input type="hidden" asp-for="@Model.Input.Id" />
+        <input readonly asp-for="@Model.Input.Name" />
+
         <input asp-for="@Model.Input.Password" value="@Model.Input.Password" />
+
         <input asp-for="@Model.Input.PasswordAgain" value="@Model.Input.PasswordAgain" />
+
         <select asp-items="@Model.Countryes" asp-for="@Model.Input.Country"></select>
+
         <input type="submit" value="Обновить" />
 
     </form>

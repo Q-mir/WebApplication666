@@ -23,7 +23,6 @@ namespace WebApplication666.Pages.Client
             _query = query;
         }
 
-        [BindProperty]
         public List<SelectListItem> Countryes { get; set; } =
             new List<SelectListItem>()
             {
@@ -57,25 +56,31 @@ namespace WebApplication666.Pages.Client
             }
         }
 
-        public void OnPost() 
+        public IActionResult OnPost() 
         {
+            if(!ModelState.IsValid) return Page();
+
+            try
+            {
             UpdateClient update = new()
             {
                 Id = Input.Id,
                 Password = Input.Password,
                 Country = Input.Country,
             };
-            try
-            {
                 _command.Execute(update);
 
-            }catch (MissingFieldException ex)
-            {
-
-            }catch (InvalidDataException ex)
-            {
-
             }
+            catch (MissingFieldException ex)
+            {
+                return Page();
+            }
+            catch (InvalidDataException ex)
+            {
+                return Page();
+            }
+            return RedirectToPage("/client/show");
+
         }
     }
 }
