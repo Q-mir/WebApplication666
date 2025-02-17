@@ -1,4 +1,5 @@
-﻿using Domain.DTO;
+﻿using Domain.Commands;
+using Domain.DTO;
 
 namespace Domain
 {
@@ -9,5 +10,6 @@ namespace Domain
         List<UserDTO> GetAll();
         UserDTO GetById(int id);
 
+        bool Update(UpdateClient client);
     }
 }

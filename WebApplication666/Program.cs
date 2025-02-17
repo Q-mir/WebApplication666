@@ -14,9 +14,14 @@ ArgumentNullException.ThrowIfNull(path);
 
 builder.Services.AddDbContext<Connection>(row => row.UseSqlServer(path));
 builder.Services.AddScoped<IRepository,RepositoryDB>();
+
 builder.Services.AddScoped<ICommand<UserDTO>, RegistrationUserCommand>();
+
 builder.Services.AddScoped<IQueryService<All,List<UserDTO>>, AllUsersService>();
+
 builder.Services.AddScoped<IQueryService<SearchById,UserDTO>, GetUserByIdQuery>();
+
+builder.Services.AddScoped<ICommand<UpdateClient>, UpdateCommandService>();
 
 var app = builder.Build();
 

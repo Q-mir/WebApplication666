@@ -3,6 +3,7 @@ using Domain.DTO;
 using Domain.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Service;
 using System.Windows.Input;
 using WebApplication666.Model;
@@ -23,7 +24,19 @@ namespace WebApplication666.Pages.Client
         }
 
         [BindProperty]
+        public List<SelectListItem> Countryes { get; set; } =
+            new List<SelectListItem>()
+            {
+                new SelectListItem("Россия", "Россия"),
+                new SelectListItem("Китай", "Китай"),
+                new SelectListItem("США", "США"),
+                new SelectListItem("Мексика", "Мексика"),
+                new SelectListItem("Канада", "Канада")
+            };
+
+        [BindProperty]
         public UserInDb Input { get; set; }
+
         public void OnGet(int id)
         {
             SearchById search = new()
@@ -41,6 +54,27 @@ namespace WebApplication666.Pages.Client
                     PasswordAgain = user.Password,
                     Country = user.Country
                 };
+            }
+        }
+
+        public void OnPost() 
+        {
+            UpdateClient update = new()
+            {
+                Id = Input.Id,
+                Password = Input.Password,
+                Country = Input.Country,
+            };
+            try
+            {
+                _command.Execute(update);
+
+            }catch (MissingFieldException ex)
+            {
+
+            }catch (InvalidDataException ex)
+            {
+
             }
         }
     }
