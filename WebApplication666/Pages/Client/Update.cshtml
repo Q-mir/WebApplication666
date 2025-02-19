@@ -7,6 +7,7 @@
 
 @if(Model.Input != null){
     <form asp-page="/client/update" method="post">
+        <div asp-validation-summary="All"></div>
         <input type="hidden" asp-for="@Model.Input.Id" />
         <input readonly asp-for="@Model.Input.Name" />
 
@@ -17,6 +18,5 @@
         <select asp-items="@Model.Countryes" asp-for="@Model.Input.Country"></select>
 
         <input type="submit" value="Обновить" />
-
     </form>
 }
